@@ -11,7 +11,7 @@ console.log("Loaded MONGO_URI:", process.env.MONGO_URI);
 connectDB(); // Connect to MongoDB
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());

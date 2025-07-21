@@ -1,4 +1,4 @@
-// db.js (MongoDB version)
+// config/db.js
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 
@@ -6,13 +6,14 @@ dotenv.config();
 
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(process.env.MONGO_URI, {
+    await mongoose.connect(process.env.MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      dbName: "portfolio_db", // optional but good practice
     });
-    console.log(`✅ MongoDB Connected: ${conn.connection.host}`);
-  } catch (err) {
-    console.error("❌ MongoDB connection failed:", err.message);
+    console.log("✅ MongoDB Connected");
+  } catch (error) {
+    console.error("❌ MongoDB Connection Error:", error.message);
     process.exit(1);
   }
 };
